@@ -1,0 +1,48 @@
+# You can find more information about this file on the symfony website:
+# http://www.symfony-project.org/reference/1_4/en/10-Routing
+
+# default rules
+#homepage:
+#  url:   /
+#  param: { module: home, action: index }
+
+api_tsched_available_tasks:
+  url:     /api/availabletasks.:sf_format/*
+  class:   sfRequestRoute
+  param:   { module: api_tsched, action: getavailabletasks }
+  requirements:
+    sf_format: (?:json)
+    sf_method: [get]
+
+api_tsched_available_task_by_name:
+  url:     /api/availabletask.:sf_format/:taskname
+  class:   sfRequestRoute
+  param:   { module: api_tsched, action: getavailabletask }
+  requirements:
+    sf_format: (?:json)
+    sf_method: [get]
+
+api_tsched_get_scheduled_tasks:
+  url:     /api/scheduledtasks.:sf_format/*
+  class:   sfRequestRoute
+  param:   { module: api_tsched, action: getscheduledtasks }
+  requirements:
+    sf_format: (?:json)
+    sf_method: [get]
+
+api_tsched_get_scheduled_task:
+  url:     /api/scheduledtask.:sf_format/:id
+  class:   sfRequestRoute
+  param:   { module: api_tsched, action: getscheduledtask }
+  requirements:
+    sf_format: (?:json)
+    sf_method: [get]
+
+# generic rules
+# please, remove them by adding more specific rules
+default_index:
+  url:   /:module
+  param: { action: index }
+
+default:
+  url:   /:module/:action/*
